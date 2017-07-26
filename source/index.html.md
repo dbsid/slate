@@ -2,14 +2,7 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
   - python
-  - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -19,221 +12,78 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the QuickSilver API! 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Java and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# Django Backend Api
 
-> To authorize, use this code:
+## /getschema post
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> post json:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{"database_id":"d84830ed-8f3e-470b-a810-69377f263553"}
 ```
 
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> 返回 json:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+{ "result": "OK" }
 ```
 
-This endpoint retrieves a specific kitten.
+## /getkeywords post
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> post json:
 
 ```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
+{"database_id":"d84830ed-8f3e-470b-a810-69377f263553"}
 ```
 
-This endpoint retrieves a specific kitten.
+> 返回 json:
 
-### HTTP Request
+```json
+{ "keyworlds": [ "A", "A001", "A002", "A003", "A004", "A005", "A006", "A007", "A008", "A009", "A010", "A011", "A012", "A013"] }
+```
 
-`DELETE http://example.com/kittens/<ID>`
+## /gettablelist post
 
-### URL Parameters
+> post json:
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+```json
+{"database_id":"d84830ed-8f3e-470b-a810-69377f263553"}
+```
 
+> 返回 json:
+
+```json
+{"用户名": ["表名1","表名2"]} "{"OUTLN": ["OL$", "OL$HINTS", "OL$NODES"]}
+```
+
+## /cancelsql post
+
+> post json:
+
+```
+{"page_id":"d84830ed-8f3e-470b-a810-69377f263553"}
+```
+
+> 返回 json:
+
+```json
+{ "result:": "取消SQL成功" }
+```
+
+## /gettablemeta post
+> post json:
+
+```
+{"database_id":"eea61c72-81c1-4d00-8ff5-d4a19809ac16", "table_name":"SYSEVENTMONITORS", "table_owner":"SYSIBM"}
+```
+
+> 返回 json:
+
+```json
+{'column': [{'COLNAME': 'NAME', 'REMARKS': None, 'LENGTH': 128, 'GENERATED': ' ', 'TYPENAME': 'VARCHAR', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 0, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'DEFINER', 'REMARKS': None, 'LENGTH': 128, 'GENERATED': ' ', 'TYPENAME': 'VARCHAR', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 1, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'TARGET_TYPE', 'REMARKS': None, 'LENGTH': 1, 'GENERATED': ' ', 'TYPENAME': 'CHARACTER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 2, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'TARGET', 'REMARKS': None, 'LENGTH': 762, 'GENERATED': ' ', 'TYPENAME': 'VARCHAR', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 3, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'MAXFILES', 'REMARKS': None, 'LENGTH': 4, 'GENERATED': ' ', 'TYPENAME': 'INTEGER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 4, 'NULLS': 'Y', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'MAXFILESIZE', 'REMARKS': None, 'LENGTH': 4, 'GENERATED': ' ', 'TYPENAME': 'INTEGER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 5, 'NULLS': 'Y', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'BUFFERSIZE', 'REMARKS': None, 'LENGTH': 4, 'GENERATED': ' ', 'TYPENAME': 'INTEGER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 6, 'NULLS': 'Y', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'IO_MODE', 'REMARKS': None, 'LENGTH': 1, 'GENERATED': ' ', 'TYPENAME': 'CHARACTER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 7, 'NULLS': 'Y', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'WRITE_MODE', 'REMARKS': None, 'LENGTH': 1, 'GENERATED': ' ', 'TYPENAME': 'CHARACTER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 8, 'NULLS': 'Y', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'AUTOSTART', 'REMARKS': None, 'LENGTH': 1, 'GENERATED': ' ', 'TYPENAME': 'CHARACTER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 9, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'REMARKS', 'REMARKS': None, 'LENGTH': 254, 'GENERATED': ' ', 'TYPENAME': 'VARCHAR', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 10, 'NULLS': 'Y', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'PACKED_DESC', 'REMARKS': None, 'LENGTH': 65536, 'GENERATED': ' ', 'TYPENAME': 'BLOB', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 11, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'NODENUM', 'REMARKS': None, 'LENGTH': 2, 'GENERATED': ' ', 'TYPENAME': 'SMALLINT', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 12, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'MONSCOPE', 'REMARKS': None, 'LENGTH': 1, 'GENERATED': ' ', 'TYPENAME': 'CHARACTER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 13, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'EVMON_ACTIVATES', 'REMARKS': None, 'LENGTH': 4, 'GENERATED': ' ', 'TYPENAME': 'INTEGER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 14, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'DEFINERTYPE', 'REMARKS': None, 'LENGTH': 1, 'GENERATED': ' ', 'TYPENAME': 'CHARACTER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 15, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'EVMONID', 'REMARKS': None, 'LENGTH': 4, 'GENERATED': ' ', 'TYPENAME': 'INTEGER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 16, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}, {'COLNAME': 'VERSIONNUMBER', 'REMARKS': None, 'LENGTH': 4, 'GENERATED': ' ', 'TYPENAME': 'INTEGER', 'KEYSEQ': None, 'DEFAULT': None, 'COLNO': 17, 'NULLS': 'N', 'TABLE_NAME': 'SYSEVENTMONITORS', 'IDENTITY': 'N', 'TABLE_OWNER': 'SYSIBM', 'SCALE': 0}], 'index_column': [{'COLNAME': 'NAME', 'TABLE_NAME': 'SYSEVENTMONITORS', 'INDNAME': 'INDEVENTMONITORS01', 'TABLE_OWNER': 'SYSIBM', 'COLORDER': 'A', 'COLSEQ': 1}, {'COLNAME': 'EVMONID', 'TABLE_NAME': 'SYSEVENTMONITORS', 'INDNAME': 'INDEVENTMONITORS02', 'TABLE_OWNER': 'SYSIBM', 'COLORDER': 'D', 'COLSEQ': 1}], 'index': [{'INDEX_ONLY_SCANS': 0, 'INDEX_SCANS': 0, 'UNIQUERULE': 'U', 'NLEAF': 1, 'KEY_UPDATES': 0, 'PAGE_SPLITS': 0, 'INDEXTYPE': 'REG ', 'TABLE_NAME': 'SYSEVENTMONITORS', 'STATS_TIME': '2015-03-07 21:59:30', 'INDNAME': 'INDEVENTMONITORS02', 'TABLE_OWNER': 'SYSIBM', 'NLEVELS': 1}, {'INDEX_ONLY_SCANS': 0, 'INDEX_SCANS': 1, 'UNIQUERULE': 'U', 'NLEAF': 1, 'KEY_UPDATES': 0, 'PAGE_SPLITS': 0, 'INDEXTYPE': 'REG ', 'TABLE_NAME': 'SYSEVENTMONITORS', 'STATS_TIME': '2015-03-07 21:59:30', 'INDNAME': 'INDEVENTMONITORS01', 'TABLE_OWNER': 'SYSIBM', 'NLEVELS': 1}], 'table': [{'OVERFLOW_ACCESSES': 0, 'TABLE_SCANS': 0, 'ROWS_INSERTED': 0, 'TBSPACE': 'SYSCATSPACE', 'CARD': 1, 'ROWS_UPDATED': 0, 'PAGE_REORGS': 0, 'TABLE_NAME': 'SYSEVENTMONITORS', 'STATS_TIME': '2015-03-07 21:59:30', 'TABLE_OWNER': 'SYSIBM', 'TABLE_SIZE': 512, 'ROWS_DELETED': 0, 'ROWS_READ': 1}]}
+```
